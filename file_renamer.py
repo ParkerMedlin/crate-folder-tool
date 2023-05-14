@@ -11,8 +11,8 @@ for filename in os.listdir(folder_path):
         if filename.endswith(".mp3"):
             mp3_audio = EasyID3(os.path.join(folder_path, filename))
             artist = mp3_audio["artist"][0]
-            track = mp3_audio["title"][0]
-            new_filename = f"{artist} - {track}.mp3"
+            title = mp3_audio["title"][0]
+            new_filename = f"{artist} - {title}.mp3"
             os.rename(os.path.join(folder_path, filename), os.path.join(folder_path, new_filename))
         elif filename.endswith(".flac"):
             flac_audio = flac.FLAC(os.path.join(folder_path, filename))
@@ -22,5 +22,5 @@ for filename in os.listdir(folder_path):
             new_file_path = os.path.join(folder_path, new_filename)
             os.rename(folder_path, new_file_path)
     except Exception as e:
-        print(f'error with {str(artist)} - {str(track)}: {str(e)}' )
+        print(f'error with {str(artist)} - {str(title)}: {str(e)}')
         continue

@@ -1,11 +1,12 @@
 import os
 from mutagen.id3 import ID3, COMM
 from mutagen.easyid3 import EasyID3
+from mutagen import flac
 
 
 # Here is the list of all the folders containing music
 folder_paths = [
-    r"C:/Users/pmedlin/Dropbox/Music Songs/acappellas",
+    r"C:/Users/pmedlin/Desktop",
     # r"C:/Users/pmedlin/Dropbox/Music Songs/ambience",
     # r"C:/Users/pmedlin/Dropbox/Music Songs/cafe_music",
     # r"C:/Users/pmedlin/Dropbox/Music Songs/creepy_idm",
@@ -31,7 +32,6 @@ for folder_path in folder_paths:
     for filename in os.listdir(folder_path):
         try:
             if filename.endswith(".mp3"):
-                # Load the metadata of the file
                 audio = ID3(os.path.join(folder_path, filename))
                 # print(audio.keys()) # prints all the dict keys
                 # Set a custom TXXX frame to store the folder name
@@ -39,6 +39,10 @@ for folder_path in folder_paths:
                     audio.add(COMM(encoding=3, text=folder_name))
                 # Save the changes to the metadata
                 audio.save()
+            elif filename.endswith(".flac"):
+                audio = flac.FLAC(os.path.join(folder_path, filename))
+                audio['comment'] = ('folder_name')
+                audio.save()
         except Exception as e:
-            print(str(e))
+            print(f'error with {filename}: {str(e)}')
             continue
