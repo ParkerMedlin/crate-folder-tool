@@ -3,7 +3,7 @@ from mutagen.easyid3 import EasyID3
 from mutagen import flac
 
 # Set the path to the folder containing the MP3 files
-folder_path = r"C:\Users\pmedlin\Desktop\New Folder"
+folder_path = r"C:\Users\Parker\Desktop\Walton - Unreleased Tunes"
 
 # Loop through all files in the folder
 for filename in os.listdir(folder_path):
@@ -20,7 +20,7 @@ for filename in os.listdir(folder_path):
             title = flac_audio['title'][0]
             new_filename = f"{artist} - {title}.flac"
             new_file_path = os.path.join(folder_path, new_filename)
-            os.rename(folder_path, new_file_path)
+            os.rename(os.path.join(folder_path, filename), new_file_path)
     except Exception as e:
         print(f'error with {str(artist)} - {str(title)}: {str(e)}')
         continue
