@@ -3,7 +3,7 @@ from mutagen.easyid3 import EasyID3
 from mutagen import flac
 
 # Set the path to the folder containing the MP3 files
-folder_path = r"C:\Users\parkm\Desktop\ff"
+folder_path = r"C:\Users\parkm\Downloads\trahpjka"
 
 # Loop through all files in the folder
 for filename in os.listdir(folder_path):
